@@ -1,3 +1,44 @@
+// Om Shanti Om Magic - Create Sparkles
+const createSparkles = () => {
+  const container = document.getElementById('sparkles');
+  for (let i = 0; i < 30; i++) {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    sparkle.style.left = Math.random() * 100 + '%';
+    sparkle.style.animationDelay = Math.random() * 4 + 's';
+    sparkle.style.animationDuration = (3 + Math.random() * 3) + 's';
+    container.appendChild(sparkle);
+  }
+};
+
+// Create Floating Hearts
+const createHearts = () => {
+  const container = document.getElementById('hearts');
+  const heartEmojis = ['💖', '💗', '✨', '⭐', '💫', '🌟'];
+  for (let i = 0; i < 20; i++) {
+    const heart = document.createElement('div');
+    heart.className = 'floating-heart';
+    heart.innerHTML = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+    heart.style.left = Math.random() * 100 + '%';
+    heart.style.animationDelay = Math.random() * 6 + 's';
+    heart.style.animationDuration = (5 + Math.random() * 4) + 's';
+    heart.style.fontSize = (15 + Math.random() * 20) + 'px';
+    container.appendChild(heart);
+  }
+};
+
+// Create Star Burst Rays
+const createStarBurst = () => {
+  const container = document.getElementById('starburst');
+  for (let i = 0; i < 12; i++) {
+    const ray = document.createElement('div');
+    ray.className = 'ray';
+    ray.style.transform = `rotate(${i * 30}deg)`;
+    ray.style.animationDelay = (i * 0.1) + 's';
+    container.appendChild(ray);
+  }
+};
+
 // Animation Timeline
 const animationTimeline = () => {
   // Spit chars that needs to be animated individually
@@ -183,15 +224,31 @@ const animationTimeline = () => {
     )
     .from(
       ".girl-dp",
-      0.5,
+      1.2,
       {
-        scale: 3.5,
+        scale: 5,
         opacity: 0,
-        x: 25,
-        y: -25,
-        rotationZ: -45,
+        x: 0,
+        y: 0,
+        rotationZ: 720,
+        ease: Expo.easeOut,
       },
       "-=2"
+    )
+    .to(
+      ".girl-dp",
+      0.3,
+      {
+        boxShadow: "0 0 80px rgba(255, 215, 0, 1), 0 0 120px rgba(255, 105, 180, 0.8)",
+        ease: Power2.easeOut,
+      }
+    )
+    .to(
+      ".girl-dp",
+      0.5,
+      {
+        boxShadow: "0 0 30px rgba(255, 215, 0, 0.5), 0 0 60px rgba(255, 105, 180, 0.3)",
+      }
     )
     .from(".hat", 0.5, {
       x: -100,
@@ -301,5 +358,10 @@ const resolveFetch = () => {
     resolve("Fetch done!");
   });
 };
+
+// Initialize magic effects
+createSparkles();
+createHearts();
+createStarBurst();
 
 resolveFetch().then(animationTimeline());
