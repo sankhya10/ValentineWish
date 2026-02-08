@@ -18,7 +18,7 @@ body {
 }
 
 .container div.six {
-  top: 10vh;
+  top: 5vh;
   z-index: 1;
 }
 
@@ -116,11 +116,11 @@ body {
   position: relative;
 }
 
-.six img {
+.six img.girl-dp {
   display: inline-block;
-  max-width: 45%;
-  max-height: 40vh;
-  height: auto;
+  width: auto;
+  max-width: 400px;
+  max-height: 35vh;
   object-fit: contain;
 }
 
